@@ -1,5 +1,6 @@
 import telebot
 import constants
+import os
 
 bot = telebot.TeleBot(constants.token)
 
@@ -28,11 +29,17 @@ def log(message, answer):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(True)
+    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
     user_markup.row('/start', '/stop')
     user_markup.row('photo', 'audio', 'docs')
     user_markup.row('sticker', 'video', 'voice', 'location')
     bot.send_message(message.from_user.id, 'Welcome..', reply_markup=user_markup)
+
+
+@bot.message_handler(commands=['stop'])
+def handle_stop(message):
+    hide_markup = telebot.types.ReplyKeyboardMarkup()
+    bot.send_message(message.from_user.id, '..', reply_markup=hide_markup)
 
 
 @bot.message_handler(commands=["help"])
@@ -58,6 +65,15 @@ def handle_text(message):
     else:
         bot.send_message(message.chat.id, answer)
         log(message, answer)
+
+
+@bot.message_handler(content_types=['text'])
+def handle_text(message):
+    if message.text == 'photo':
+        directory = 'C:/....'
+        all_files_in_directory = os.listdir(directory)
+        bot.send_chat_action(message.from_user.id, 'upload photo')
+        bot.send_photo(message.from_user.id, constants.template_photo_id)
 
 
 # @bot.message_handler(content_types=["document"])
