@@ -13,14 +13,19 @@ bot = telebot.TeleBot(constants.token)
 # print(message_from_user)
 
 
-@bot.message_handler(content_types=["commands"])
+@bot.message_handler(commands=["help"])
 def handle_command(message):
-    print("Пришла команда")
+    bot.send_message(message.chat.id, """Eeep! All right!""")
 
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    print("Пришло простое сообщение")
+    if message.text == 'a':
+        bot.send_message(message.chat.id, "B")
+    elif message.text == 'b':
+        bot.send_message(message.chat.id, "A")
+    else:
+        bot.send_message(message.chat.id, "Oopps!")
 
 
 @bot.message_handler(content_types=["document"])
