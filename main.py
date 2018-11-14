@@ -12,6 +12,17 @@ bot = telebot.TeleBot(constants.token)
 # message_from_user = last_upd.message
 # print(message_from_user)
 
+print(bot.get_me())
+
+
+def log(message, answer):
+    from datetime import datetime
+    print(datetime.now())
+    print("Message from {0} {1}. (id = {2}) \n Text - {3}".format(message.from_user.first_name,
+                                                                  message.from_user.last_name,
+                                                                  str(message.from_user.id),
+                                                                  message.text))
+
 
 @bot.message_handler(commands=["help"])
 def handle_command(message):
