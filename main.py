@@ -26,6 +26,15 @@ def log(message, answer):
     print(answer)
 
 
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup(True)
+    user_markup.row('/start', '/stop')
+    user_markup.row('photo', 'audio', 'docs')
+    user_markup.row('sticker', 'video', 'voice', 'location')
+    bot.send_message(message.from_user.id, 'Welcome..', reply_markup=user_markup)
+
+
 @bot.message_handler(commands=["help"])
 def handle_command(message):
     bot.send_message(message.chat.id, """Eeep! All right!""")
