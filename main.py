@@ -33,5 +33,14 @@ def handle_audio(message):
     print("Пришла аудиозапись")
 
 
+@bot.message_handler(content_types=["photo"])
+def handle_photo(message):
+    print("Пришла фотография")
+
+
+@bot.message_handler(content_types=["sticker"])
+def handle_sticker(message):
+    print("Пришёл стикер")
+
 
 bot.polling(none_stop=True, interval=0)
