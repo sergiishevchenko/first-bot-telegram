@@ -23,6 +23,8 @@ def log(message, answer):
                                                                   str(message.from_user.id),
                                                                   message.text))
 
+    print(answer)
+
 
 @bot.message_handler(commands=["help"])
 def handle_command(message):
@@ -31,32 +33,42 @@ def handle_command(message):
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
+    answer = "You are bad gamer!"
     if message.text == 'a':
+        answer = "B"
+        log(message, answer)
         bot.send_message(message.chat.id, "B")
     elif message.text == 'b':
+        answer = "A"
+        log(message, answer)
         bot.send_message(message.chat.id, "A")
+    elif message.text == "1" or message.text == "2":
+        bot.send_message(message.chat.id, "No! This is 1 or 2...")
+    elif message.text == "1" and str(message.from_user.id) == "48612897":
+        bot.send_message(message.chat.id, "Excellent!")
     else:
-        bot.send_message(message.chat.id, "Oopps!")
+        bot.send_message(message.chat.id, answer)
+        log(message, answer)
 
 
-@bot.message_handler(content_types=["document"])
-def handle_document(message):
-    print("Пришёл документ")
-
-
-@bot.message_handler(content_types=["audio"])
-def handle_audio(message):
-    print("Пришла аудиозапись")
-
-
-@bot.message_handler(content_types=["photo"])
-def handle_photo(message):
-    print("Пришла фотография")
-
-
-@bot.message_handler(content_types=["sticker"])
-def handle_sticker(message):
-    print("Пришёл стикер")
+# @bot.message_handler(content_types=["document"])
+# def handle_document(message):
+#     print("Пришёл документ")
+#
+#
+# @bot.message_handler(content_types=["audio"])
+# def handle_audio(message):
+#     print("Пришла аудиозапись")
+#
+#
+# @bot.message_handler(content_types=["photo"])
+# def handle_photo(message):
+#     print("Пришла фотография")
+#
+#
+# @bot.message_handler(content_types=["sticker"])
+# def handle_sticker(message):
+#     print("Пришёл стикер")
 
 
 bot.polling(none_stop=True, interval=0)
