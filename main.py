@@ -98,29 +98,15 @@ def handle_text(message):
             bot.send_chat_action(message.from_user.id, 'upload document')
             bot.send_document(message.from_user.id, document)
             document.close()
-            
-
-
-
-
-# @bot.message_handler(content_types=["document"])
-# def handle_document(message):
-#     print("Пришёл документ")
-#
-#
-# @bot.message_handler(content_types=["audio"])
-# def handle_audio(message):
-#     print("Пришла аудиозапись")
-#
-#
-# @bot.message_handler(content_types=["photo"])
-# def handle_photo(message):
-#     print("Пришла фотография")
-#
-#
-# @bot.message_handler(content_types=["sticker"])
-# def handle_sticker(message):
-#     print("Пришёл стикер")
+    elif message.text == 'sticker':
+        bot.send_sticker(message.from_user.id, constants.template_sticker_id)
+    elif message.text == 'video':
+        video = open("C:/....", "rb")
+        bot.send_chat_action(message.from_user.id, 'upload video')
+        bot.send_video(message.from_user.id, video)
+        video.close()
+    elif message.text == 'voice':
+        
 
 
 bot.polling(none_stop=True, interval=0)
