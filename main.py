@@ -106,7 +106,13 @@ def handle_text(message):
         bot.send_video(message.from_user.id, video)
         video.close()
     elif message.text == 'voice':
-        
+        voice = open("C:/....", "rb")
+        bot.send_chat_action(message.from_user.id, 'upload voice')
+        bot.send_voice(message.from_user.id, voice)
+        voice.close()
+    elif message.text == 'location':
+        bot.send_chat_action(message.from_user.id, 'find_location')
+        bot.send_location(message.from_user.id, 54.22544, 84.54585)
 
 
 bot.polling(none_stop=True, interval=0)
