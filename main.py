@@ -90,7 +90,15 @@ def handle_text(message):
         bot.send_chat_action(message.from_user.id, 'upload audio')
         bot.send_audio(message.from_user.id, audio)
         audio.close()
-        
+    elif message.text == 'document':
+        directory = 'C:/....'
+        all_files_in_directory = os.listdir(directory)
+        for files in all_files_in_directory:
+            document = open(directory + '/' + files, "rb")
+            bot.send_chat_action(message.from_user.id, 'upload document')
+            bot.send_document(message.from_user.id, document)
+            document.close()
+            
 
 
 
