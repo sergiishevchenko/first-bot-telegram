@@ -85,7 +85,14 @@ def handle_text(message):
         bot.send_chat_action(message.from_user.id, 'upload photo')
         bot.send_photo(message.from_user.id, img)
         img.close()
-    elif 
+    elif message.text == 'audio':
+        audio = open("C:/Users/....", "rb")
+        bot.send_chat_action(message.from_user.id, 'upload audio')
+        bot.send_audio(message.from_user.id, audio)
+        audio.close()
+        
+
+
 
 
 # @bot.message_handler(content_types=["document"])
