@@ -72,13 +72,6 @@ def handle_text(message):
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
     if message.text == 'photo':
-        # directory = 'C:/....'
-        # all_files_in_directory = os.listdir(directory)
-        # random_file = random.choice(all_files_in_directory)
-        # img = open(directory + '/' + random_file, 'rb')
-        # bot.send_chat_action(message.from_user.id, 'upload photo')
-        # bot.send_photo(message.from_user.id, img)
-        # img.close()
         url ='https://goo.gl/58RCFF'
         urllib2.urlretrieve(url, 'url_image.jpg')
         img = open('url_image.jpg', 'rb')
