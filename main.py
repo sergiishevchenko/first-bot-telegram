@@ -6,14 +6,14 @@ import urllib.request as urllib2
 
 bot = telebot.TeleBot(constants.token)
 
-# bot.send_message(486128297, "test")
+bot.send_message(486128297, "test")
 # 48612897 - my id
-#
-# upd = bot.get_updates()
-# print(upd)
-# last_upd = upd[-1]
-# message_from_user = last_upd.message
-# print(message_from_user)
+
+upd = bot.get_updates()
+print(upd)
+last_upd = upd[-1]
+message_from_user = last_upd.message
+print(message_from_user)
 
 print(bot.get_me())
 
